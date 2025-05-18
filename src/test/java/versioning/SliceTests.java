@@ -1,0 +1,36 @@
+package versioning;
+
+import org.junit.jupiter.api.Test;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.MockMvcBuilderCustomizer;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.test.web.servlet.assertj.MockMvcTester;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.setup.ConfigurableMockMvcBuilder;
+import org.springframework.web.client.ApiVersionInserter;
+
+@WebMvcTest(AccountController.class)
+class SliceTests {
+
+	@Test
+	void getAccount(@Autowired MockMvcTester tester) {
+		tester.get().uri("/accounts/1")
+				.apiVersion(1.1)
+				.assertThat()
+				.hasStatusOk()
+				.bodyJson().isEqualTo("{\"id\":\"1\",\"name\":\"Checking\"}");
+	}
+
+	@TestConfiguration
+	static class TestConfig implements MockMvcBuilderCustomizer {
+
+		@Override
+		public void customize(ConfigurableMockMvcBuilder<?> builder) {
+			builder.apiVersionInserter(ApiVersionInserter.useHeader("X-API-Version"))
+					.alwaysDo(MockMvcResultHandlers.print());
+		}
+	}
+
+}
