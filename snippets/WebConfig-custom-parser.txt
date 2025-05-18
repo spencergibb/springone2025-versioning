@@ -1,0 +1,35 @@
+
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+
+	@Override
+	public void configureApiVersioning(ApiVersionConfigurer configurer) {
+
+		Map<String, String> groups = Map.of("2024-12-31", "1.1", "2025-03-15", "1.2");
+
+		configurer.useRequestParam("version")
+				.setVersionParser(new CustomVersionParser(groups));
+	}
+
+
+	static class CustomVersionParser extends SemanticApiVersionParser {
+
+		private static final Pattern DATE_PATTERN = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
+
+		private final Map<String, String> map;
+
+		CustomVersionParser(Map<String, String> map) {
+			this.map = new HashMap<>(map);
+		}
+
+		@Override
+		public Version parseVersion(String version) {
+			if (DATE_PATTERN.matcher(version).matches()) {
+				version = map.get(version);
+				Assert.notNull(version, "Unknown version");
+			}
+			return super.parseVersion(version);
+		}
+	}
+
+}

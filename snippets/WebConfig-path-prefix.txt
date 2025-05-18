@@ -1,0 +1,15 @@
+
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+
+	@Override
+	public void configureApiVersioning(ApiVersionConfigurer configurer) {
+		configurer.usePathSegment(0)
+				.addSupportedVersions("1");
+	}
+
+	@Override
+	public void configurePathMatch(PathMatchConfigurer configurer) {
+		configurer.addPathPrefix("/{v}", aClass -> true);
+	}
+}
