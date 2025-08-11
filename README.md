@@ -1,2 +1,2 @@
 
-Demo and [slides](Spring-IO-2025-API-Versioning.pdf) for [API Versioning in Spring Framework 7](https://2025.springio.net/sessions/api-versioning-in-spring-framework-7/) talk at Spring I/O 2025.
+Demo for [API Versioning in Spring](https://event.vmware.com/flow/vmware/explore2025lv/content/page/catalog?search.product=1707435488591001gzW1&tab.sessioncatalogtabs=1747347809815001igUo&search=%22API%20Versioning%20in%20Spring%22) talk at SpringOne 2025.
