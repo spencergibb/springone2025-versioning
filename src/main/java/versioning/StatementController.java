@@ -41,7 +41,7 @@ public class StatementController {
 		return repository.getStatementsForAccount(id);
 	}
 
-	@GetMapping(version = "1.2+")
+	@GetMapping(version = "1.2")
 	List<Statement> getStatements1_2(@PathVariable String id) {
 		return repository.getStatementsForAccount(id);
 	}
