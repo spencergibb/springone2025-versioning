@@ -25,7 +25,7 @@ import org.springframework.web.service.annotation.HttpExchange;
 @HttpExchange("/accounts")
 public interface AccountService {
 
-	@GetExchange(url = "/{id}", version = "1.1")
+	@GetExchange(url = "/{id}")
 	Account getAccount(@PathVariable int id);
 
 }
