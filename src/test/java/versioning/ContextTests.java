@@ -30,7 +30,7 @@ class ContextTests {
 
 		@Override
 		public void customize(ConfigurableMockMvcBuilder<?> builder) {
-			builder.apiVersionInserter(ApiVersionInserter.useHeader("X-API-Version"))
+			builder.apiVersionInserter(ApiVersionInserter.useHeader("X-Api-Version"))
 					.alwaysDo(MockMvcResultHandlers.print());
 		}
 	}
