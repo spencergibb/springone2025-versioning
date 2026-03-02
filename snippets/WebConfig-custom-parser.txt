@@ -7,7 +7,7 @@ public class WebConfig implements WebMvcConfigurer {
 
 		Map<String, String> groups = Map.of("2024-12-31", "1.1", "2025-03-15", "1.2");
 
-		configurer.useRequestParam("version")
+		configurer.useQueryParam("version")
 				.setVersionParser(new CustomVersionParser(groups));
 	}
 
