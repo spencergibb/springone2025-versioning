@@ -5,4 +5,4 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
-rootProject.name = 'springone25-versioning'
+rootProject.name = 'spring-api-versioning-demo'
